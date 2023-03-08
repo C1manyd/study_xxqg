@@ -25,6 +25,7 @@ import (
 
 	"github.com/johlanse/study_xxqg/conf"
 	"github.com/johlanse/study_xxqg/utils"
+
 	// "github.com/johlanse/study_xxqg/gui"
 	"github.com/johlanse/study_xxqg/lib"
 	"github.com/johlanse/study_xxqg/model"
@@ -98,8 +99,8 @@ func init() {
 		CustomCallerFormatter: nil,
 	})
 	if !utils.CheckQuestionDB() {
-		go utils.DownloadDbFile()
-		//log.Errorln("题库文件不存在或已损坏，请手动前往 https://github.com/johlanse/study_xxqg/blob/main/conf/QuestionBank.db 下载并放入程序根目录")
+		//go utils.DownloadDbFile()
+		log.Errorln("题库文件不存在或已损坏，请手动前往 https://github.com/ 寻找QuestionBank.db下载并放入程序根目录")
 	}
 }
 

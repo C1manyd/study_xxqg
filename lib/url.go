@@ -2,7 +2,7 @@ package lib
 
 const (
 	userInfoUrl            = "https://pc-api.xuexi.cn/open/api/user/info"
-	userTotalscoreUrl      = "https://pc-api.xuexi.cn/open/api/score/get"
+	userTotalscoreUrl      = "https://pc-proxy-api.xuexi.cn/delegate/score/get"
 	userTodaytotalscoreUrl = "https://pc-api.xuexi.cn/open/api/score/today/query"
 	userRatescoreUrl       = "https://pc-proxy-api.xuexi.cn/api/score/days/listScoreProgress?sence=score&deviceType=2"
 

@@ -202,8 +202,8 @@ func (c *Core) RespondDaily(user *model.User, model string) {
 	for {
 	label:
 		tryCount++
-		if tryCount >= 30 {
-			log.Panicln("多次循环尝试答题，已超出30次，自动退出")
+		if tryCount >= 5 {
+			log.Panicln("多次循环尝试答题，已超出5次，自动退出")
 		}
 		if c.IsQuit() {
 			return
@@ -325,8 +325,6 @@ func (c *Core) RespondDaily(user *model.User, model string) {
 			if title == questionText {
 				log.Warningln("可能已经卡住，正在重试，重试次数+1")
 				retryTimes++
-			} else {
-				retryTimes = 0
 			}
 			title = questionText
 

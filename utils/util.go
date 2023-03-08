@@ -59,7 +59,7 @@ func CheckUserCookie(cookies []*http.Cookie) (bool, error) {
 }
 
 var (
-	dbSum = "d6e455f03b419af108cced07ea1d17f8268400ad1b6d80cb75d58e952a5609bf"
+	dbSum = "a71c289c9423dd71a88d1fd9db48d51479a4beed8e013f9519c691f524613cff"
 )
 
 // CheckQuestionDB
@@ -92,13 +92,10 @@ func CheckQuestionDB() bool {
 	// 格式化为16进制字符串
 	sha := fmt.Sprintf("%x", h.Sum(nil))
 	log.Infoln("db_sha: " + sha)
-	if sha != dbSum {
-		return false
-	}
-	return true
+	return sha == dbSum
 }
 
-func DownloadDbFile() {
+func DownloadDbFile() { //不可用
 	defer func() {
 		err := recover()
 		if err != nil {
