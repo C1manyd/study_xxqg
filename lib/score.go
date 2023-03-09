@@ -55,7 +55,6 @@ func GetUserScore(cookies []*http.Cookie) (Score, error) {
 	// }
 	// log.Debugln(gjson.GetBytes(resp, "@this|@pretty"))
 	score.TotalScore = int(gjson.GetBytes(resp, "data.score").Int())
-	log.Debug(score.TotalScore)
 	// 获取用户今日得分
 	// err = gout.GET(userTodaytotalscoreUrl).SetCookies(cookies...).SetHeader(gout.H{
 	// 	"Cache-Control": "no-cache",
@@ -65,14 +64,15 @@ func GetUserScore(cookies []*http.Cookie) (Score, error) {
 
 	// 	return Score{}, err
 	// }
-	response, err = client.R().SetCookies(cookies...).SetHeaders(header).Get(userTodaytotalscoreUrl)
-	if err != nil {
-		log.Errorln("获取用户总分错误" + err.Error())
-		return Score{}, err
-	}
-	resp = response.Bytes()
+	//response, err = client.R().SetCookies(cookies...).SetHeaders(header).Get(userTodaytotalscoreUrl)
+	//if err != nil {
+	//	log.Errorln("获取用户总分错误" + err.Error())
+	//	return Score{}, err
+	//}
+	//log.Debug(response)
+	//resp = response.Bytes()
 	// log.Debugln(gjson.GetBytes(resp, "@this|@pretty"))
-	score.TodayScore = int(gjson.GetBytes(resp, "data.score").Int())
+	//score.TodayScore = int(gjson.GetBytes(resp, "data.score").Int())
 
 	// err = gout.GET(userRatescoreUrl).SetCookies(cookies...).SetHeader(gout.H{
 	// 	"Cache-Control": "no-cache",
@@ -89,7 +89,7 @@ func GetUserScore(cookies []*http.Cookie) (Score, error) {
 	resp = response.Bytes()
 	// log.Debugln(gjson.GetBytes(resp, "@this|@pretty"))
 	datas := gjson.GetBytes(resp, "data.taskProgress").Array()
-	m := make(map[string]Data, 7)
+	m := make(map[string]Data, 6)
 
 	m["article"] = Data{ //我要选读文章
 		CurrentScore: int(datas[0].Get("currentScore").Int()),
@@ -119,7 +119,13 @@ func GetUserScore(cookies []*http.Cookie) (Score, error) {
 		CurrentScore: int(datas[5].Get("currentScore").Int()),
 		MaxScore:     int(datas[5].Get("dayMaxScore").Int()),
 	}
-
+	score.TodayScore = func() int {
+		res := 0
+		for i := 0; i < 6; i++ {
+			res += int(datas[i].Get("currentScore").Int())
+		}
+		return res
+	}()
 	score.Content = m
 
 	return score, err
