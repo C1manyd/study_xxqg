@@ -232,7 +232,8 @@ func do(m string) {
 	getPush("", "flush", "学习强国助手已上线")
 
 	var user *model.User
-	log.Infoln(user.Nick)
+	log.Debug(user)
+	//log.Infoln(user.Nick)
 	users, _ := model.Query()
 	study := func(core2 *lib.Core, u *model.User) {
 		defer func() {
@@ -253,7 +254,7 @@ func do(m string) {
 			core2.RespondDaily(u, "daily")
 		} else if config.Model == 3 {
 			core2.RespondDaily(u, "daily")
-			core2.RespondDaily(u, "weekly")
+			//core2.RespondDaily(u, "weekly")
 			core2.RespondDaily(u, "special")
 		}
 		endTime := time.Now()
