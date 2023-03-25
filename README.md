@@ -1,15 +1,6 @@
-### 学习强国自动化学习
-
-
+### 自动化学xi
 该项目基于[playwright-go](https://github.com/mxschmitt/playwright-go) 开发，支持*windows*，*linux*,*mac*
 
-
-### 文档地址: https://johlanse.shhy.xyz
-> 请先看文档再提出问题
- 
+基于johlanse的项目魔改
 
 ##  申明，该项目仅用于学习。
-
-## 鸣谢
-
-+ ### [imkenf/XueQG](https://github.com/imkenf/XueQG)
